@@ -2914,8 +2914,26 @@ class App extends React.Component<AppProps, AppState> {
       }
 
       if (this.state.viewModeEnabled) {
-        return;
+        let scrollDelta = 10;
+        const scrollChanges:any = {
+          ArrowLeft: { scrollX: this.state.scrollX - scrollDelta },
+          ArrowRight: { scrollX: this.state.scrollX + scrollDelta },
+          ArrowDown: { scrollY: this.state.scrollY + scrollDelta },
+          ArrowUp: { scrollY: this.state.scrollY - scrollDelta },
+        };
+      
+        const key = event.key;
+        const scrollChange = scrollChanges[key];
+      
+        if (scrollChange) {
+          // Increase smoothness mathematically
+          scrollDelta = Math.min(scrollDelta * 1.02, 10); // Increase scrollDelta by 2% each time, capped at 10
+          this.translateCanvas(scrollChange);
+        }
       }
+      
+      
+
 
       if (event[KEYS.CTRL_OR_CMD] && this.state.isBindingEnabled) {
         this.setState({ isBindingEnabled: false });
