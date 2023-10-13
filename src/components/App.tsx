@@ -2928,8 +2928,6 @@ class App extends React.Component<AppProps, AppState> {
         const scrollChange = scrollChanges[key];
       
         if (scrollChange) {
-          // Increase smoothness mathematically
-          scrollDelta = Math.min(scrollDelta * 1.02, 10); // Increase scrollDelta by 2% each time, capped at 10
           this.translateCanvas(scrollChange);
         }
       }
