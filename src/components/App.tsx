@@ -2916,7 +2916,7 @@ class App extends React.Component<AppProps, AppState> {
       }
 
       if (this.state.viewModeEnabled) {
-        let scrollDelta = 10;
+        let scrollDelta = DRAGGING_THRESHOLD;
         const scrollChanges:any = {
           ArrowLeft: { scrollX: this.state.scrollX - scrollDelta },
           ArrowRight: { scrollX: this.state.scrollX + scrollDelta },
